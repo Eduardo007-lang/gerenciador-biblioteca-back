@@ -121,6 +121,27 @@ Este é um sistema completo para gerenciamento de usuários, livros, gêneros e 
 
 ---
 
+## 🏛️ Arquitetura do Projeto
+
+![Diagrama da Arquitetura](docs/diagrama.png)
+
+O sistema segue uma arquitetura em camadas, separando responsabilidades para facilitar manutenção, testes e escalabilidade:
+
+- **Controllers:** Responsáveis por receber as requisições HTTP, validar dados e repassar para os serviços. Ficam em `app/Http/Api/V1/Controllers`.
+- **Services:** Contêm a lógica de negócio principal (ex: criação de empréstimos, regras de cache, validações customizadas). Ficam em `app/Services`.
+- **Models:** Representam as entidades do banco de dados e suas relações. Ficam em `app/Models`.
+- **Migrations:** Definem a estrutura das tabelas do banco de dados. Ficam em `database/migrations`.
+- **Seeders e Factories:** Geram dados de teste e populam o banco. Ficam em `database/seeders` e `database/factories`.
+- **Jobs:** Processos assíncronos e agendados, como verificação de empréstimos vencidos. Ficam em `app/Jobs`.
+- **Cache:** Implementado nas listagens de entidades, usando api cache do laravel, para melhorar performance.
+- **Autenticação:** Utiliza JWT (via `tymon/jwt-auth`) para autenticação de API.
+- **Versionamento de API:** Todas as rotas da API estão sob o prefixo `/api/V1/`, facilitando futuras evoluções sem quebrar clientes existentes.
+- **Documentação:** Todos os endpoints são documentados via Swagger (L5-Swagger), acessível via `/api/documentation`.
+
+Essa separação garante um código limpo, organizado e fácil de evoluir.
+
+---
+
 ## 🛠️ Comandos Úteis
 - Rodar testes:
   ```bash
