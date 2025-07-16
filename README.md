@@ -15,7 +15,7 @@ Este é um sistema completo para gerenciamento de usuários, livros, gêneros e 
 - **Cache**: Api cache laravel
 - **Laravel Debugbar** (dev)
 
-### Frontend (opcional)
+### Frontend
 - **React** 
 - **Axios**
 
@@ -103,6 +103,14 @@ Este é um sistema completo para gerenciamento de usuários, livros, gêneros e 
 ## 🧾 Documentação da API
 - Acesse a documentação Swagger em: `http://localhost:8000/api/documentation`
 - Todos os endpoints estão documentados com exemplos de request/response.
+- Para gerar/atualizar a documentação Swagger, rode:
+  ```bash
+  php artisan l5-swagger:generate
+  ```
+- Se necessário, publique o config do Swagger:
+  ```bash
+  php artisan vendor:publish --provider="L5Swagger\L5SwaggerServiceProvider"
+  ```
 
 ---
 
@@ -134,8 +142,8 @@ Este é um sistema completo para gerenciamento de usuários, livros, gêneros e 
 - Exemplo de login:
   ```json
   {
-    "email": "admin@admin.com",
-    "password": "password"
+    "email": "admin@gmail.com",
+    "password": "Admin1234!"
   }
   ```
 
