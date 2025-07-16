@@ -12,7 +12,7 @@ Este é um sistema completo para gerenciamento de usuários, livros, gêneros e 
 - **MySQL**
 - **JWT Auth** (`tymon/jwt-auth`)
 - **L5-Swagger** (documentação de API)
-- **Cache**: Api chache laravel
+- **Cache**: Api cache laravel
 - **Laravel Debugbar** (dev)
 
 ### Frontend (opcional)
