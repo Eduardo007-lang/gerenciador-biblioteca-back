@@ -13,7 +13,7 @@ class BookService
     {
         $page = request('page', 1);
         $cacheKey = self::BOOKS_CACHE_KEY . '_page_' . $page;
-        return \Illuminate\Support\Facades\Cache::remember($cacheKey, 60 * 60, function () {
+        return Cache::remember($cacheKey, 60 * 60, function () {
             return Book::with('genres:id,genre')->paginate(10);
         });
     }
