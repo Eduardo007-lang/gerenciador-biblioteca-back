@@ -62,6 +62,10 @@ Este é um sistema completo para gerenciamento de usuários, livros, gêneros e 
    ```bash
    php artisan migrate --seed
    ```
+   - Para resetar o banco e popular novamente:
+     ```bash
+     php artisan migrate:fresh --seed
+     ```
 7. **(Opcional) Configure o cache para Redis:**
    No `.env`:
    ```env
@@ -98,6 +102,28 @@ Este é um sistema completo para gerenciamento de usuários, livros, gêneros e 
   Authorization: Bearer {seu_token}
   ```
 
+### Exemplo de login
+Endpoint: `POST /api/login`
+Payload:
+```json
+{
+  "email": "admin@gmail.com",
+  "password": "Admin1234!"
+}
+```
+Resposta:
+```json
+{
+  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9..."
+}
+```
+
+### Exemplo de requisição autenticada
+Inclua o token JWT no header das requisições protegidas:
+```
+Authorization: Bearer seu_token_aqui
+```
+
 ---
 
 ## 🧾 Documentação da API
@@ -115,7 +141,7 @@ Este é um sistema completo para gerenciamento de usuários, livros, gêneros e 
 ---
 
 ## 🗄️ Cache
-- Listagens de livros, usuários, gêneros e empréstimos utilizam cache automático.
+- Listagens de livros, usuários, gêneros e empréstimos utilizam cache automático por página.
 - O cache é invalidado ao criar, atualizar ou deletar registros.
 - Suporte a Redis ou Database.
 
@@ -155,6 +181,19 @@ Essa separação garante um código limpo, organizado e fácil de evoluir.
   ```bash
   php artisan schedule:work
   ```
+
+---
+
+## 🧪 Testes de Integração
+- Os testes cobrem:
+  - Login e autenticação JWT
+  - Criação de livros autenticada
+  - Paginação de usuários
+- Para rodar todos os testes:
+  ```bash
+  php artisan test
+  ```
+- Certifique-se de que as factories estejam atualizadas para campos obrigatórios (ex: `registration_number` em User).
 
 ---
 
