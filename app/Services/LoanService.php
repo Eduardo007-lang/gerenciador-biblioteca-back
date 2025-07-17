@@ -13,8 +13,10 @@ class LoanService
 
     public function listLoans()
     {
-        return Cache::remember(self::LOANS_CACHE_KEY, 60 * 60, function () {
-            return Loan::with(['user', 'book'])->get();
+        $page = request('page', 1);
+        $cacheKey = self::LOANS_CACHE_KEY . '_page_' . $page;
+        return Cache::remember($cacheKey, 60 * 60, function () {
+            return Loan::with(['user', 'book'])->paginate(10);
         });
     }
 
